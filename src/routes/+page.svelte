@@ -4,6 +4,8 @@
 
 	let message = '';
 
+	export let data;
+
 	onMount(() => {
 		trpc.hello.query().then((res) => {
 			message = res.message;
@@ -11,4 +13,12 @@
 	});
 </script>
 
-<h1>{message}</h1>
+{#await data.getCoffee}
+	<p>Loading...</p>
+{:then coffee}
+	<pre>
+		{JSON.stringify(coffee, null, 2)}
+	</pre>
+{:catch error}
+	<p>{error.message}</p>
+{/await}
