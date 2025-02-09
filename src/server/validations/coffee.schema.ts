@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { coffeeType } from '$lib/coffee';
 
 export const coffeeSchema = z.object({
 	title: z.string(),
@@ -9,7 +10,7 @@ export const coffeeSchema = z.object({
 });
 
 export const getCoffeeListParamSchema = z.object({
-	type: z.enum(['hot', 'iced']).default('hot')
+	type: z.enum(coffeeType).default(coffeeType['0'])
 });
 
 export const coffeeListSchema = z.array(coffeeSchema);
