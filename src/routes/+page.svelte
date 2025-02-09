@@ -4,7 +4,7 @@
 
 	let message = '';
 
-	export let data;
+	let { data } = $props();
 
 	onMount(() => {
 		trpc.hello.query().then((res) => {
